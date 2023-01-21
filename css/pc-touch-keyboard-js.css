@@ -1,0 +1,36 @@
+.uc-keyboard-box-fx {
+    background-color: #d7d7d7;
+    margin-top: 3px;
+    border: 1px solid #c6c6c6;
+    border-radius: 5px;
+}
+
+.uc-keyboard-box-fx .keyboard .-row {
+    display: flow-root;
+    padding-top: 1.5px;
+    padding-bottom: 1.5px;
+}
+
+.uc-keyboard-box-fx .keyboard .-row .btn {
+    text-align: center;
+    padding-top: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.uc-keyboard-box-fx .keyboard .keypad {
+    text-align: center;
+}
+
+.uc-keyboard-box-fx .keyboard .keypad .key {
+    width: 8%;
+}
+
+/**/
+.uc-keyboard-box-fx .keyboard .numpad {
+    text-align: left;
+}
+
+.uc-keyboard-box-fx .keyboard .numpad .key {
+    width: 30%;
+}

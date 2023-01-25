@@ -76,10 +76,7 @@
             element.append($layout);
 
             setupKeys();
-
-            if (optionsKeyboard.is_hidden) {
-                //$layout.hide();
-            }
+            setUpEvents();
         };
 
         setupKeys = function () {
@@ -91,8 +88,6 @@
 
             $layout.append('<div class="keyboard row row-no-gutters">');
 
-            
-            console.log(optionsKeyboard.type);
             if (optionsKeyboard.type === 'a-z') {
                 $('<div/>', {
                     'class': 'col-xs-10 keypad col-xs-offset-1 ',
@@ -108,20 +103,27 @@
                     'class': 'col-xs-3 numpad',
                     html: render19()
                 }).appendTo('div.keyboard');
+            } else if (optionsKeyboard.type === 'a-z9-1') {
+                $('<div/>', {
+                    'class': 'col-xs-9 keypad',
+                    html: renderAZ()
+                }).appendTo('div.keyboard');
+
+                $('<div/>', {
+                    'class': 'col-xs-3 numpad',
+                    html: render91()
+                }).appendTo('div.keyboard');
             }
 
         };
 
         renderArray = function (arryKeys) {
             let html = '<div class="-row">';
-
             arryKeys.forEach(function (key) {
-                console.log(key);
                 html += '<a value="' + key.text + '" class="' + key.class + '" style="' + key.style + '">'
                 html += key.text
                 html += '</a>'
             });
-
             html += '</div>'
             return html;
         }
@@ -143,11 +145,26 @@
         }
 
         render91 = function () {
-            html += renderArray(keys_79);
+            html = renderArray(keys_79);
             html += renderArray(keys_46);
-            html = renderArray(keys_13);
+            html += renderArray(keys_13);
             html += renderArray(keys_0sub);
             return html;
+        }
+
+        setUpEvents = function () {
+            let keys = element.find('.key, :not(.disabled)').get();
+            let input = element.find('input').get()[0];
+            console.log(input);
+            keys.forEach(key => {
+                let value = key.getAttribute('value');
+                if (value) {
+                    key.addEventListener("click", function (a, b, c) {
+                        console.log(value);
+                        input.value += value;
+                    });
+                }
+            });
         }
 
         /***************************************************************************/

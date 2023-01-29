@@ -28,9 +28,13 @@
 
 /**/
 .uc-keyboard-box-fx .keyboard .numpad {
-    text-align: left;
+    /*text-align: left;*/
 }
 
 .uc-keyboard-box-fx .keyboard .numpad .key {
     width: 30%;
+}
+
+.text-center {
+    text-align: center;
 }

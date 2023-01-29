@@ -4,7 +4,9 @@
 (function ($) {
     var Keyboard = function (selector, options) {
         var element = $(selector);
+        console.log(element);
         var $layout = $('<div class="uc-keyboard-box-fx">');
+        console.log($layout);
         var _this = this;
         var optionsKeyboard = $.extend({
             type: 'a-z1-9',         // a-z a-z1-9 a-z91 9-1 1-9
@@ -67,30 +69,26 @@
 
         var keys_0sub = [
             { style: '', text: '0', class: 'btn btn-default key' },
-            { style: 'width: 60%', text: 'Enviar', class: 'btn btn-default key' },
+            { style: 'width: 60%', text: 'Enviar', class: 'btn btn-default key disabled' },
         ];
         /********************/
         /* Metodos Privados */
         /********************/
         initKeyboard = function () {
             element.append($layout);
+            console.log($layout);
 
             setupKeys();
             setUpEvents();
         };
 
         setupKeys = function () {
-            if (optionsKeyboard.type === '9-1' || optionsKeyboard.type === '1-9') {
-                $layout.append('<div class="form-group"><input class="form-control" type="number"></div>');
-            } else {
-                $layout.append('<div class="form-group"><input class="form-control" type="text"></div>');
-            }
-
+            $layout.append('<div class="form-group"><input class="form-control" type="text"></div>');
             $layout.append('<div class="keyboard row row-no-gutters">');
 
             if (optionsKeyboard.type === 'a-z') {
                 $('<div/>', {
-                    'class': 'col-xs-10 keypad col-xs-offset-1 ',
+                    'class': 'col-xs-12 keypad ',
                     html: renderAZ()
                 }).appendTo('div.keyboard');
             } else if (optionsKeyboard.type === 'a-z1-9') {
@@ -111,6 +109,11 @@
 
                 $('<div/>', {
                     'class': 'col-xs-3 numpad',
+                    html: render91()
+                }).appendTo('div.keyboard');
+            } else if (optionsKeyboard.type === '9-1') {
+                $('<div/>', {
+                    'class': 'col-lg-12 numpad text-center',
                     html: render91()
                 }).appendTo('div.keyboard');
             }
@@ -155,12 +158,10 @@
         setUpEvents = function () {
             let keys = element.find('.key, :not(.disabled)').get();
             let input = element.find('input').get()[0];
-            console.log(input);
             keys.forEach(key => {
                 let value = key.getAttribute('value');
                 if (value) {
                     key.addEventListener("click", function (a, b, c) {
-                        console.log(value);
                         input.value += value;
                     });
                 }

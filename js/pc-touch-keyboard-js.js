@@ -84,38 +84,43 @@
 
         setupKeys = function () {
             $layout.append('<div class="form-group"><input class="form-control" type="text"></div>');
-            $layout.append('<div class="keyboard row row-no-gutters">');
+            $layout.append('<div class="keyboard row row-no-gutters"></div>');
 
             if (optionsKeyboard.type === 'a-z') {
                 $('<div/>', {
                     'class': 'col-xs-12 keypad ',
                     html: renderAZ()
-                }).appendTo('div.keyboard');
+                }).appendTo($layout.find('.keyboard'));
             } else if (optionsKeyboard.type === 'a-z1-9') {
                 $('<div/>', {
                     'class': 'col-xs-9 keypad',
                     html: renderAZ()
-                }).appendTo('div.keyboard');
+                }).appendTo($layout.find('.keyboard'));
 
                 $('<div/>', {
                     'class': 'col-xs-3 numpad',
                     html: render19()
-                }).appendTo('div.keyboard');
+                }).appendTo($layout.find('.keyboard'));
             } else if (optionsKeyboard.type === 'a-z9-1') {
                 $('<div/>', {
                     'class': 'col-xs-9 keypad',
                     html: renderAZ()
-                }).appendTo('div.keyboard');
+                }).appendTo($layout.find('.keyboard'));
 
                 $('<div/>', {
                     'class': 'col-xs-3 numpad',
                     html: render91()
-                }).appendTo('div.keyboard');
+                }).appendTo($layout.find('.keyboard'));
             } else if (optionsKeyboard.type === '9-1') {
                 $('<div/>', {
                     'class': 'col-lg-12 numpad text-center',
                     html: render91()
-                }).appendTo('div.keyboard');
+                }).appendTo($layout.find('.keyboard'));
+            } else if (optionsKeyboard.type === '1-9') {
+                $('<div/>', {
+                    'class': 'col-lg-12 numpad text-center',
+                    html: render19()
+                }).appendTo($layout.find('.keyboard'));
             }
 
         };
